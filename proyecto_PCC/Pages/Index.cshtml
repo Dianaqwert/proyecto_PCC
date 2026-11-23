@@ -1,0 +1,287 @@
+﻿@page
+@model IndexModel
+@{
+    Layout = null;
+    ViewData["Title"] = "C# y .NET en Desarrollo Web — Arquitectura, Mercado y Empresas";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/StyleSheet.css?v=1" />
+</head>
+<body>
+    @Html.AntiForgeryToken()
+
+    <div class="container py-4 py-md-5">
+        <!-- HERO -->
+        <div class="hero-pastel p-4 p-md-5 mb-5">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <span class="badge badge-pastel px-3 py-2 rounded-pill mb-3">
+                        <i class="bi bi-cpu me-1"></i> Demostración Técnica • ASP.NET Core + Roslyn + CLR
+                    </span>
+                    <h1 class="display-5 fw-bold mb-3">
+                        C# y .NET en el Desarrollo Web
+                    </h1>
+                    <p class="lead mb-4" style="color: #433e63;">
+                        Esta aplicación web está construida en <strong>ASP.NET Core</strong>: declarada en <code>proyecto_PCC.csproj</code>, compilada por <strong>Roslyn</strong> a <strong>CIL (<code>proyecto_PCC.dll</code>)</strong> y ejecutada por el <strong>CLR + RyuJIT</strong>.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="#seccion-arquitectura" class="btn btn-dotnet px-4 py-2">
+                            <i class="bi bi-diagram-3 me-2"></i>Cómo se compila (.dll)
+                        </a>
+                        <a href="#seccion-sueldos" class="btn btn-soft px-4 py-2">
+                            <i class="bi bi-cash-coin me-2"></i>Salarios Ags / MX / Remoto
+                        </a>
+                        <a href="#seccion-empresas" class="btn btn-soft px-4 py-2">
+                            <i class="bi bi-buildings me-2"></i>Empresas por Sector
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card-clean p-4">
+                        <h6 class="text-uppercase small fw-bold mb-3" style="color: #5b3cc4;">
+                            <i class="bi bi-file-earmark-code me-1"></i> Archivos del Proyecto Web
+                        </h6>
+                        <ul class="list-unstyled small mb-0" style="color: #363254;">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i><code>proyecto_PCC.csproj</code> (SDK y NuGet)</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i><code>Program.cs</code> (Host y Middleware)</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i><code>Index.cshtml.cs</code> (Lógica C# / JSON)</li>
+                            <li><i class="bi bi-check-circle-fill text-success me-2"></i><code>proyecto_PCC.dll</code> (Ensamblado CIL)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 1: CÓMO FUNCIONA ESTA PÁGINA EN .NET Y C# -->
+        <section id="seccion-arquitectura" class="mb-5">
+            <div class="mb-4">
+                <h2 class="fw-bold mb-1"><i class="bi bi-layers text-primary me-2"></i>Construcción y Compilación de esta Página Web (.dll y CLR)</h2>
+                <p class="mb-0" style="color: var(--text-muted);">Ruta desde los archivos declarados en Visual Studio hasta su ejecución en el servidor web.</p>
+            </div>
+            <div class="row g-4">
+                @foreach (var paso in Model.FlujoDotNet)
+                {
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card-clean h-100 p-4">
+                            <span class="badge badge-pastel font-mono mb-2">@paso.Archivo</span>
+                            <h5 class="fw-bold mb-2">@paso.Titulo</h5>
+                            <p class="small mb-0" style="color: var(--text-muted);">@paso.Explicacion</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: PANORAMA SALARIAL DETALLADO -->
+        <section id="seccion-sueldos" class="mb-5">
+            <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-4 gap-3">
+                <div>
+                    <h2 class="fw-bold mb-1"><i class="bi bi-graph-up-arrow text-primary me-2"></i>Panorama Salarial C# y .NET</h2>
+                    <p class="mb-0" style="color: var(--text-muted);">Comparativa por región: Aguascalientes, México, Remoto LATAM/EE. UU. y Extranjero.</p>
+                </div>
+                <div class="d-flex flex-wrap gap-2">
+                    <button type="button" class="btn btn-dotnet px-3 tab-salario" data-region="ags" onclick="seleccionarRegion('ags', this)">
+                        📍 Aguascalientes
+                    </button>
+                    <button type="button" class="btn btn-soft px-3 tab-salario" data-region="mx" onclick="seleccionarRegion('mx', this)">
+                        🇲🇽 México
+                    </button>
+                    <button type="button" class="btn btn-soft px-3 tab-salario" data-region="remoto" onclick="seleccionarRegion('remoto', this)">
+                        🌎 Remoto (USD/mes)
+                    </button>
+                    <button type="button" class="btn btn-soft px-3 tab-salario" data-region="usa" onclick="seleccionarRegion('usa', this)">
+                        🇺🇸 EE. UU. (USD/año)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Paneles por región -->
+            @foreach (var tab in Model.Tabuladores)
+            {
+                <div class="panel-salario @(tab.Id == "ags" ? "" : "d-none")" id="panel-@tab.Id">
+                    <div class="alert alert-light border mb-4 d-flex align-items-center gap-2" style="border-color: var(--border-soft) !important;">
+                        <i class="bi bi-info-circle-fill text-primary"></i>
+                        <span class="small"><strong>@tab.Region:</strong> @tab.Nota</span>
+                    </div>
+
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-4">
+                            <div class="card-clean h-100 p-4">
+                                <span class="badge badge-pastel rounded-pill mb-2">Nivel Junior</span>
+                                <h3 class="fw-bold my-2" style="color: #4f46e5;">@tab.JrRango</h3>
+                                <p class="small mb-0" style="color: var(--text-muted);">@tab.JrDetalle</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card-clean h-100 p-4">
+                                <span class="badge badge-pastel rounded-pill mb-2">Nivel Mid-Level</span>
+                                <h3 class="fw-bold my-2" style="color: #0284c7;">@tab.MidRango</h3>
+                                <p class="small mb-0" style="color: var(--text-muted);">@tab.MidDetalle</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card-clean h-100 p-4">
+                                <span class="badge badge-pastel rounded-pill mb-2">Nivel Senior</span>
+                                <h3 class="fw-bold my-2" style="color: #7c3aed;">@tab.SrRango</h3>
+                                <p class="small mb-0" style="color: var(--text-muted);">@tab.SrDetalle</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (tab.Id == "ags")
+                    {
+                        <div class="card-clean p-4 mb-4">
+                            <h6 class="fw-bold mb-3"><i class="bi bi-briefcase text-primary me-2"></i>Vacantes locales observadas en Aguascalientes (MXN / mes)</h6>
+                            <div class="table-responsive">
+                                <table class="table table-sm align-middle mb-0">
+                                    <thead>
+                                        <tr style="color: var(--text-muted);">
+                                            <th>Empresa</th>
+                                            <th>Tecnologías</th>
+                                            <th>Sueldo publicado</th>
+                                            <th>Modalidad</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var v in Model.VacantesAgs)
+                                        {
+                                            <tr>
+                                                <td class="fw-semibold">@v.Empresa</td>
+                                                <td><span class="badge badge-sector">@v.Stack</span></td>
+                                                <td class="fw-bold text-primary">@v.Sueldo</td>
+                                                <td class="small" style="color: var(--text-muted);">@v.Ubicacion</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+
+            <!-- Claves importantes -->
+            <div class="insight-banner p-4 mb-4">
+                <h6 class="fw-bold mb-2"><i class="bi bi-lightbulb-fill text-warning me-2"></i>Qué conviene tener en cuenta</h6>
+                <ul class="small mb-0" style="color: #363254;">
+                    <li class="mb-1">Un desarrollador <strong>Senior remoto para una empresa de EE. UU.</strong> gana entre <strong>3 y 5 veces más</strong> que uno local en Aguascalientes.</li>
+                    <li>El <strong>inglés avanzado (C1)</strong> y la experiencia con <strong>Azure, SQL Server y microservicios</strong> son los factores que más incrementan el salario.</li>
+                </ul>
+            </div>
+
+            <!-- DEMOSTRACIÓN INTERACTIVA EN EL SERVIDOR C# -->
+            <div class="card-clean p-4 p-md-5">
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-6">
+                        <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill mb-2">
+                            Demostración Backend en Vivo (C# Pattern Matching)
+                        </span>
+                        <h3 class="fw-bold mb-2">Simulador de Rango Salarial .NET</h3>
+                        <p class="small mb-3" style="color: var(--text-muted);">
+                            Al presionar el botón, JavaScript envía tu perfil al método C# <code>OnPostEvaluarPerfil</code> compilado en <code>proyecto_PCC.dll</code>.
+                        </p>
+                        <div class="row g-3">
+                            <div class="col-sm-4">
+                                <label class="form-label small fw-semibold">Años exp. C#:</label>
+                                <input type="number" id="inputAnios" class="form-control" value="3" min="0" max="20">
+                            </div>
+                            <div class="col-sm-4 d-flex align-items-end">
+                                <div class="form-check form-switch mb-2">
+                                    <input class="form-check-input" type="checkbox" id="checkNube" checked>
+                                    <label class="form-check-label small fw-semibold" for="checkNube">Azure / Microservicios</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 d-flex align-items-end">
+                                <div class="form-check form-switch mb-2">
+                                    <input class="form-check-input" type="checkbox" id="checkIngles" checked>
+                                    <label class="form-check-label small fw-semibold" for="checkIngles">Inglés C1</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="button" class="btn btn-dotnet w-100 py-2" onclick="evaluarEnServidor()">
+                                    <i class="bi bi-lightning-charge-fill me-1"></i> Evaluar Perfil en el Servidor C#
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="resultado-box p-4">
+                            <div class="small fw-bold text-uppercase mb-1" style="color: #5b3cc4;">
+                                Respuesta del Runtime .NET (CLR):
+                            </div>
+                            <h4 id="resNivel" class="fw-bold mb-2" style="color: #1e1b3a;">
+                                Presiona "Evaluar Perfil" para ejecutar la consulta
+                            </h4>
+                            <p id="resSueldo" class="mb-2 fw-bold" style="color: #0284c7;"></p>
+                            <p id="resDetalle" class="small mb-0" style="color: var(--text-muted);">
+                                Aquí verás la estimación calculada mediante <em>pattern matching</em> en C#.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: EMPRESAS POR SECTOR -->
+        <section id="seccion-empresas">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+                <div>
+                    <h2 class="fw-bold mb-1"><i class="bi bi-building-check text-primary me-2"></i>Empresas que Contratan C# y .NET por Sector</h2>
+                    <p class="mb-0" style="color: var(--text-muted);">Vacantes y organizaciones verificadas en Aguascalientes, México y remoto LATAM.</p>
+                </div>
+                <div class="d-flex flex-wrap gap-2">
+                    <select id="filtroSector" class="form-select w-auto" onchange="filtrarEmpresas()">
+                        <option value="">Todos los sectores</option>
+                        <option value="industrial">Industrial / Manufactura</option>
+                        <option value="salud">Salud</option>
+                        <option value="banca">Banca, Seguros y Consultoras</option>
+                        <option value="entretenimiento">Entretenimiento</option>
+                    </select>
+                    <input type="text" id="filtroEmpresa" class="form-control w-auto"
+                           placeholder="Buscar empresa o ciudad..." onkeyup="filtrarEmpresas()">
+                </div>
+            </div>
+
+            <div class="row g-4" id="gridEmpresas">
+                @foreach (var emp in Model.Empresas)
+                {
+                    <div class="col-md-6 col-lg-4 tarjeta-empresa"
+                         data-sector="@emp.Sector.ToLower()"
+                         data-texto="@($"{emp.Nombre} {emp.Sector} {emp.Ubicacion} {emp.Tecnologia} {emp.Descripcion}".ToLower())">
+                        <div class="card-clean h-100 p-4 d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-center gap-2 mb-2">
+                                <span class="badge badge-sector rounded-pill">@emp.Sector</span>
+                                <span class="small fw-semibold" style="color: var(--text-muted);">
+                                    <i class="bi bi-geo-alt-fill text-primary"></i> @emp.Ubicacion
+                                </span>
+                            </div>
+                            <h5 class="fw-bold mb-1">@emp.Nombre</h5>
+                            <span class="small font-mono mb-3" style="color: #5b3cc4;">@emp.Tecnologia</span>
+                            <p class="small mb-0 mt-auto" style="color: var(--text-muted);">@emp.Descripcion</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+
+<script src="~/js/JavaScript.js?v=1"></script>
+<script src="~/js/site.js?v=1"></script>

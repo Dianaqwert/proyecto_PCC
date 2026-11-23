@@ -1,0 +1,90 @@
+﻿:root {
+    --bg-page: #f6f5fc;
+    --bg-card: #ffffff;
+    --primary-dotnet: #5b3cc4;
+    --primary-soft: #ede9fe;
+    --text-main: #1e1b3a;
+    --text-muted: #575375;
+    --border-soft: #e2ddf8;
+}
+
+body {
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+code, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.hero-pastel {
+    background: linear-gradient(135deg, #ede9fe 0%, #e0f2fe 55%, #fce7f3 100%);
+    border: 1px solid var(--border-soft);
+    border-radius: 1.5rem;
+}
+
+.card-clean {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: 1.15rem;
+    box-shadow: 0 8px 24px rgba(91, 60, 196, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .card-clean:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 28px rgba(91, 60, 196, 0.11);
+    }
+
+.badge-pastel {
+    background-color: var(--primary-soft);
+    color: var(--primary-dotnet);
+    font-weight: 600;
+    border: 1px solid #d8b4fe;
+}
+
+.badge-sector {
+    background-color: #e0f2fe;
+    color: #0369a1;
+    font-weight: 600;
+}
+
+.btn-dotnet {
+    background-color: var(--primary-dotnet);
+    color: #ffffff;
+    border: none;
+    font-weight: 600;
+    border-radius: 0.75rem;
+}
+
+    .btn-dotnet:hover {
+        background-color: #482da8;
+        color: #ffffff;
+    }
+
+.btn-soft {
+    background-color: #ffffff;
+    color: var(--primary-dotnet);
+    border: 1px solid #c4b5fd;
+    font-weight: 600;
+    border-radius: 0.75rem;
+}
+
+    .btn-soft:hover {
+        background-color: var(--primary-soft);
+        color: var(--primary-dotnet);
+    }
+
+.resultado-box {
+    background: linear-gradient(135deg, #f5f3ff 0%, #eff6ff 100%);
+    border: 1px solid #c4b5fd;
+    border-radius: 1rem;
+}
+
+.insight-banner {
+    background: linear-gradient(135deg, #eef2ff 0%, #f0fdf4 100%);
+    border-left: 5px solid var(--primary-dotnet);
+    border-radius: 0.85rem;
+}
+
